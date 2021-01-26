@@ -6,6 +6,13 @@ jobs:
   run-github-actions:
     runs-on: ubuntu-latest
     steps:
+      - name: List Files
+        run: |
+          pwd
+          ls 
+          ll
+          ls -a 
+          ls -al
       - name: Simple JavaScript Actions
         id: greet
         uses: actions/hello-world-javascript-action@v1.1
