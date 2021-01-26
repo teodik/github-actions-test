@@ -9,8 +9,7 @@ jobs:
       - name: List Files
         run: |
           pwd
-          ls 
-          ll
+          ls
           ls -a 
           ls -al
       - name: Simple JavaScript Actions
