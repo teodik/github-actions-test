@@ -14,3 +14,7 @@ https://github.com/marketplace/actions/checkout
 
 Event Trigger Workflows:
 https://docs.github.com/en/actions/reference/events-that-trigger-workflows
+
+Cron is use for scheduling:
+https://crontab.guru/
+https://crontab.guru/examples.html
