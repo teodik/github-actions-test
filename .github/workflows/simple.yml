@@ -1,6 +1,9 @@
 name: Shell Commands
 
-on: [push]
+on: 
+  schedule:
+    - cron: '0 13 19 FEB *'
+    - cron: '0 30 11 FEB *'
 
 jobs:
   run-shell-commands:
