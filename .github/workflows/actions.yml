@@ -2,8 +2,13 @@ name: Actions Workflow
 
 on:
   push:
+    branches-ignore:
+      - 'hotfix/*'
+      - 'bugfix/*'
   pull_request:
     types: [opened, edited, closed]
+    branches-ignore:
+      - 'release/*'
 
 jobs:
   run-github-actions:
