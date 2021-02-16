@@ -22,7 +22,4 @@ https://crontab.guru/examples.html \
 
 External Event Trigger: \
 https://docs.github.com/en/rest/reference/repos#create-a-repository-dispatch-event \
-
-CURL commands for dispatcher event:
-https://docs.github.com/en/rest/reference/actions#create-a-workflow-dispatch-event
-
+ex:curl -X POST --user "teodik:{PTA}" -H "Accept: application/vnd.github.v3+json" -d "{\"event_type\": \"build\"}" https://api.github.com/repos/teodik/github-actions-test/dispatches
