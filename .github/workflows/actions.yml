@@ -8,6 +8,11 @@ on:
       - 'release/*'
       - master
       - 'feature/*'
+      - '!feature/Test' #will not run on feature/Test branch
+    tags:
+      - v1.*
+    paths:
+      - '**.js' #will run if there is a push on any javascrip file
   pull_request:
     types: [opened, edited, closed]
 
