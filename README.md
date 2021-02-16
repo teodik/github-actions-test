@@ -19,3 +19,10 @@ https://docs.github.com/en/actions/reference/events-that-trigger-workflows
 Cron is use for scheduling:\
 https://crontab.guru/ \
 https://crontab.guru/examples.html \
+
+External Event Trigger: \
+https://docs.github.com/en/rest/reference/repos#create-a-repository-dispatch-event \
+
+CURL commands for dispatcher event:
+https://docs.github.com/en/rest/reference/actions#create-a-workflow-dispatch-event
+
