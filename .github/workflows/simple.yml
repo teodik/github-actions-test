@@ -1,5 +1,5 @@
 name: Shell Commands
-
+workflow_id: 1
 on:
   repository_dispatch:
     types: [build]
