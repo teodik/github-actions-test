@@ -5,6 +5,18 @@ on:
     types: [build]
 
 jobs:
+  get-github-object:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get client payload
+        run: |
+          echo "github = ${{github}}"
+          echo "\n\n"
+          echo "github.event = ${{github.event}}"
+          echo "\n\n"
+          echo "github.event.client_payload = ${{github.event.client_payload}}"
+          echo "\n\n"
+          echo "github.event.client_payload.Repositories = ${{github.event.client_payload.Repositories}}"
   run-shell-commands:
     runs-on: ubuntu-latest
     steps:
