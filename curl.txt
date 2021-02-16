@@ -1,1 +1,0 @@
-curl -X POST --user "teodik:d05ab4fa0fa8a679f088ff4aad94fd2a768e1a40" -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/teodik/github-actions-test/actions/workflows/"Shell Commands"/dispatches -d "{\"event_type\": \"build\"}"
