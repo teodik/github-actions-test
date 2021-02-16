@@ -1,7 +1,6 @@
 name: Shell Commands
-workflow_id: 1
+
 on:
-  push:
   repository_dispatch:
     types: [build]
 
