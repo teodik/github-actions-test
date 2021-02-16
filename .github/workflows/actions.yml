@@ -2,6 +2,12 @@ name: Actions Workflow
 
 on:
   push:
+    branches:
+      - develop
+      - main
+      - 'release/*'
+      - master
+      - 'feature/*'
   pull_request:
     types: [opened, edited, closed]
 
