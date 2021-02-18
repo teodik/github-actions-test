@@ -8,23 +8,23 @@ env:
   WF_ENV: Workflow environment variables scope is the entire workfolw (all jobs and steps)
 
 jobs:
- log-env:
-  runs-on: ubuntu-latest
-  env:
-    JOB_ENV: Job environment variables scope is the job they are defined 
-  steps:
-    - name: Log all environment variable
-      env:
-        STEP_ENV: Step environment variables scope is the step they are defined.
-      run: |
+  log-env:
+    runs-on: ubuntu-latest
+    env:
+      JOB_ENV: Job environment variables scope is the job they are defined 
+    steps:
+      - name: Log all environment variable
+        env:
+          STEP_ENV: Step environment variables scope is the step they are defined.
+        run: |
+          echo "WF_ENV: ${WF_ENV}"
+          echo "JOB_ENV: ${JOB_ENV}"
+          echo "STEP_ENV: ${STEP_ENV}"
+      - name: Log Job and workflow environment variables
+        run: |
         echo "WF_ENV: ${WF_ENV}"
         echo "JOB_ENV: ${JOB_ENV}"
         echo "STEP_ENV: ${STEP_ENV}"
-    - name: Log Job and workflow environment variables
-      run: |
-       echo "WF_ENV: ${WF_ENV}"
-       echo "JOB_ENV: ${JOB_ENV}"
-       echo "STEP_ENV: ${STEP_ENV}"
   log-default-env:
     runs-on: ubuntu-latest
     steps:
