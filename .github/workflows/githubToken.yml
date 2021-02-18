@@ -31,7 +31,7 @@ jobs:
     - name: create a random file
       run: |
         ls -al
-        cd githib-actions-course
+        cd github-actions-course
         ls -al
         echo $RANDOM >> random.txt
         ls -al
