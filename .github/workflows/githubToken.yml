@@ -12,7 +12,7 @@ jobs:
       run: |
         curl --request POST \
         --url https://api.github.com/repos/teodik/github-actions-course/issues \
-        -u ${GITHUB_USERNAME}:${GITHUB_PASSWORD} \
+        -u "${GITHUB_USERNAME}:${GITHUB_PASSWORD}" \
         --header 'content-type: application/json' \
         --data '{
           "title": "Automated issue for commit: ${{ github.sha }}",
@@ -30,6 +30,7 @@ jobs:
         ls -al
     - name: create a random file
       run: |
+        ls -al
         cd githib-actions-course
         ls -al
         echo $RANDOM >> random.txt
