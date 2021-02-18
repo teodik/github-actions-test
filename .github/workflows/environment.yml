@@ -1,0 +1,54 @@
+name: Environment Variables
+
+on:
+  push:
+    branch-ignore:
+      - develop
+env:
+  WF_ENV: Workflow environment variables scope is the entire workfolw (all jobs and steps)
+
+jobs:
+ log-env:
+  runs-on: ubuntu-latest
+  env:
+    JOB_ENV: Job environment variables scope is the job they are defined 
+  steps:
+    - name: Log all environment variable
+      env:
+        STEP_ENV: Step environment variables scope is the step they are defined.
+      run: |
+        echo "WF_ENV: ${WF_ENV}"
+        echo "JOB_ENV: ${JOB_ENV}"
+        echo "STEP_ENV: ${STEP_ENV}"
+    - name: Log Job and workflow environment variables
+      run: |
+       echo "WF_ENV: ${WF_ENV}"
+       echo "JOB_ENV: ${JOB_ENV}"
+       echo "STEP_ENV: ${STEP_ENV}"
+  log-default-env:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log workflow environment variables
+        run: |
+          echo "WF_ENV: ${WF_ENV}"
+          echo "JOB_ENV: ${JOB_ENV}"
+          echo "STEP_ENV: ${STEP_ENV}"
+          echo "CI: ${CI}"
+          echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}"
+          echo "GITHUB_RUN_ID: ${GITHUB_RUN_ID}"
+          echo "GITHUB_RUN_NUMBER: ${GITHUB_RUN_NUMBER}"
+          echo "GITHUB_ACTION: ${GITHUB_ACTION}"
+          echo "GITHUB_ACTIONS: ${GITHUB_ACTIONS}"
+          echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
+          echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
+          echo "GITHUB_EVENT_NAME: ${GITHUB_EVENT_NAME}"
+          echo "GITHUB_EVENT_PATH: ${GITHUB_EVENT_PATH}"
+          echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
+          echo "GITHUB_SHA: ${GITHUB_SHA}"
+          echo "GITHUB_REF: ${GITHUB_REF}"
+          echo "GITHUB_HEAD_REF: ${GITHUB_HEAD_REF}"
+          echo "GITHUB_BASE_REF: ${GITHUB_BASE_REF}"
+          echo "GITHUB_SERVER_URL: ${GITHUB_SERVER_URL}"
+          echo "GITHUB_API_URL: ${GITHUB_API_URL}"
+          echo "GITHUB_GRAPHQL_URL: ${GITHUB_GRAPHQL_URL}"
+          echo "HOME: ${HOME}"
