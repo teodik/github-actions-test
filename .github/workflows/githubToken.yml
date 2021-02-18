@@ -26,6 +26,8 @@ jobs:
       run: |
         pwd
         ls -al
+        git config --global user.email "teodik1979@gmail.com"
+        git config --global user.name "Teodik"
         git clone https://${GITHUB_USERNAME}:{GITHUB_PASSWORD}@github.com/teodik/github-actions-course.git
         ls -al
     - name: create a random file
