@@ -6,6 +6,7 @@ on:
       - develop
 env:
   WF_ENV: Workflow environment variables scope is the entire workfolw (all jobs and steps)
+  AWS_KEY: "${{secrets.AWS_TOKEN}}"
 
 jobs:
   log-env:
@@ -18,11 +19,13 @@ jobs:
           STEP_ENV: Step environment variables scope is the step they are defined.
         run: |
           echo "WF_ENV: ${WF_ENV}"
+          echo "AWS_KEY: ${AWS_KEY}"
           echo "JOB_ENV: ${JOB_ENV}"
           echo "STEP_ENV: ${STEP_ENV}"
       - name: Log Job and workflow environment variables
         run: |
           echo "WF_ENV: ${WF_ENV}"
+          echo "AWS_KEY: ${AWS_KEY}"
           echo "JOB_ENV: ${JOB_ENV}"
           echo "STEP_ENV: ${STEP_ENV}"
   log-default-env:
@@ -31,6 +34,7 @@ jobs:
       - name: Log workflow environment variables
         run: |
           echo "WF_ENV: $WF_ENV"
+          echo "AWS_KEY: ${AWS_KEY}"
           echo "JOB_ENV: ${JOB_ENV}"
           echo "STEP_ENV: ${STEP_ENV}"
           echo "CI: ${CI}"
