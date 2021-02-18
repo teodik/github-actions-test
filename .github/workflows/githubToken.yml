@@ -1,6 +1,9 @@
-name: Create issue on commit
+name: Manupulating Repositoy
 on:
 - push
+env:
+  GITHUB_USERNAME: ${GITHUB_ACTOR}
+  GITHUB_PASSWORD: ${secrets.REPO_PASS}
 jobs:
   create_commit:
     runs-on: ubuntu-latest
@@ -9,10 +12,28 @@ jobs:
       run: |
         curl --request POST \
         --url https://api.github.com/repos/teodik/github-actions-course/issues \
-        --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+        --usr ${GITHUB_USERNAME}:${GITHUB_PASSWORD} \
         --header 'content-type: application/json' \
         --data '{
           "title": "Automated issue for commit: ${{ github.sha }}",
           "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n The commit hash was: _${{ github.sha }}_."
           }' \
         --fail
+  Create_file:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Close a repository
+      run: |
+        pwd
+        ls -al
+        git clone https://${GITHUB_USERNAME}:{GITHUB_PASSWORD}@github.com/teodik/github-actions-course.git
+        ls -al
+    - name: create a random file
+      run: |
+        cd githib.actions-course
+        ls -al
+        echo $RANDOM >> random.txt
+        ls -al
+        git add .
+        git commit -m "A random file created by ${GITHUB_ACTION}"
+        git push
