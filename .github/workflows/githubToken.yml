@@ -2,7 +2,7 @@ name: Manupulating Repositoy
 on:
 - push
 env:
-  GITHUB_USERNAME: teodik
+  GITHUB_USERNAME: ${GITHUB_ACTOR}
   GITHUB_PASSWORD: ${secrets.REPO_PASS}
 jobs:
   create_commit:
@@ -10,20 +10,13 @@ jobs:
     steps:
     - name: Create issue using REST API
       run: |
-        curl --request POST \
-        --url https://api.github.com/repos/teodik/demo/issues \
-        --user "${GITHUB_USERNAME}:${GITHUB_PASSWORD}" \
-        --header 'content-type: application/json' \
-        --data '{
-          "title": "Automated issue for commit: ${{ github.sha }}",
-          "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n The commit hash was: _${{ github.sha }}_."
-          }' \
-        --fail
+        curl --request POST --url https://api.github.com/repos/teodik/demo/issues --user "${GITHUB_USERNAME}:${GITHUB_PASSWORD}" --header 'content-type: application/json' --data '{"title": "Automated issue for commit: ${{ github.sha }}", "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n The commit hash was: _${{ github.sha }}_."}'
   Create_file:
     runs-on: ubuntu-latest
     steps:
     - name: Close a repository
       run: |
+        echo "${GITHUB_ACTOR}"
         echo "${GITHUB_USERNAME}"
         pwd
         ls -al
