@@ -32,12 +32,10 @@ jobs:
         git config --global user.name "${GITHUB_USERNAME}"
         git clone https://github.com/teodik/demo.git
         ls -al
-    - name: create a random file
-      run: |
         cd demo
         ls -al
         echo $RANDOM >> random.txt
         ls -al
         git add .
         git commit -m "A random file created by ${GITHUB_ACTION}"
-        git push
+        git push       
