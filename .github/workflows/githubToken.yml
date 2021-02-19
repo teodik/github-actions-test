@@ -3,7 +3,7 @@ on:
 - push
 env:
   GITHUB_USERNAME: ${GITHUB_ACTOR}
-  GITHUB_PASSWORD: ${secrets.REPO_PASS}
+  GITHUB_PASSWORD: ${{secrets.REPO_PASS}}
 jobs:
   create_commit:
     runs-on: ubuntu-latest
