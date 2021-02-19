@@ -19,7 +19,7 @@ jobs:
     - name: Clone a repository
       uses: actions/checkout@v2.3.4
       with:
-        repository: 'https://github.com/teodik/demo.git'
+        repository: 'teodik/demo'
         path: 'demo'
     - name: create a file and push to repository
       run: |
