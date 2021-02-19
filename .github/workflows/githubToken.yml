@@ -10,7 +10,7 @@ jobs:
     steps:
     - name: Create issue using REST API
       run: |
-        curl --request POST --url https://api.github.com/repos/teodik/demo/issues --user "${GITHUB_USERNAME}:${GITHUB_PASSWORD}" --header 'content-type: application/json' --data '{"title": "Automated issue for commit: ${{ github.sha }}", "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n The commit hash was: _${{ github.sha }}_."}'
+        curl --request POST --url https://api.github.com/repos/teodik/demo/issues --user "${GITHUB_USERNAME}:${GITHUB_PASSWORD}" --header 'content-type: application/json' --data '{"title": "Automated issue for commit: ${{ github.sha }}", "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n The commit hash was: _${{ github.sha }}_."}' --fail
   Create_file:
     runs-on: ubuntu-latest
     steps:
