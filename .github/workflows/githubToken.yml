@@ -2,7 +2,7 @@ name: Manupulating Repositoy
 on:
 - push
 env:
-  GITHUB_USERNAME: ${GITHUB_ACTOR}
+  GITHUB_USERNAME: teodik
   GITHUB_PASSWORD: ${secrets.REPO_PASS}
 jobs:
   create_commit:
@@ -24,7 +24,7 @@ jobs:
     steps:
     - name: Close a repository
       run: |
-        echo "${env.GITHUB_USERNAME}"
+        echo "${GITHUB_USERNAME}"
         pwd
         ls -al
         git config --global credential.https://github.com.username ${GITHUB_USERNAME}
