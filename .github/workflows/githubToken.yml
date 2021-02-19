@@ -15,19 +15,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Close a repository
+      run: mkdir demo
+      uses: actions/checkout@v2.3.4
+      with:
+        repository: 'https://github.com/teodik/demo.git'
+        path: 'demo'
       run: |
         echo "${GITHUB_ACTOR}"
         echo "${GITHUB_USERNAME}"
         pwd
         ls -al
-        git config --global credential.https://github.com.username ${GITHUB_USERNAME}
-        git config --global credential.helper "password=${GITHUB_PASSWORD}"
+        cd demo
         git config --global user.email "teodik1979@gmail.com"
         git config --global user.name "${GITHUB_USERNAME}"
-        git clone https://github.com/teodik/demo.git
-        ls -al
-        cd demo
-        ls -al
         echo $RANDOM >> random.txt
         ls -al
         git add .
