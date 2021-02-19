@@ -24,7 +24,7 @@ jobs:
     steps:
     - name: Close a repository
       run: |
-        echo "${GITHUB_USERNAME}"
+        echo "${env.GITHUB_USERNAME}"
         pwd
         ls -al
         git config --global credential.https://github.com.username ${GITHUB_USERNAME}
