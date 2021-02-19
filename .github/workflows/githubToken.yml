@@ -2,7 +2,7 @@ name: Manupulating Repositoy
 on:
 - push
 env:
-  GITHUB_USERNAME: ${GITHUB_ACTOR}
+  GITHUB_USERNAME: ${{GITHUB_ACTOR}}
   GITHUB_PASSWORD: ${{secrets.REPO_PASS}}
 jobs:
   create_commit:
