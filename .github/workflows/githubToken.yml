@@ -12,7 +12,7 @@ jobs:
       run: |
         curl --request POST \
         --url https://api.github.com/repos/teodik/demo/issues \
-        -u "${GITHUB_USERNAME}:${GITHUB_PASSWORD}" \
+        --user "${GITHUB_USERNAME}:${GITHUB_PASSWORD}" \
         --header 'content-type: application/json' \
         --data '{
           "title": "Automated issue for commit: ${{ github.sha }}",
@@ -24,10 +24,11 @@ jobs:
     steps:
     - name: Close a repository
       run: |
+        echo "${GITHUB_USERNAME}"
         pwd
         ls -al
-        git config --global user.name "${GITHUB_USERNAME}"
-        git config --global user.password "${GITHUB_PASSWORD}"
+        git config --global credential.https://github.com.username ${GITHUB_USERNAME}
+        git config --global credential.helper "password=${GITHUB_PASSWORD}"
         git config --global user.email "teodik1979@gmail.com"
         git config --global user.name "${GITHUB_USERNAME}"
         git clone https://github.com/teodik/demo.git
