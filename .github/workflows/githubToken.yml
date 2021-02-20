@@ -33,7 +33,7 @@ jobs:
         pwd
         git config --global user.email "teodik1979@gmail.com"
         git config --global user.name "teodik"
-        git config --global user.password "${GITHUB_PASSWORD}"
+        git config --global user.password "${{secrets.REPO_PASS}}"
         echo $RANDOM >> random.txt
         ls -al
         git add .
