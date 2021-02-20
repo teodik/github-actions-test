@@ -2,15 +2,15 @@ name: Manupulating Repositoy
 on:
 - push
 env:
-  GITHUB_USERNAME: ${GITHUB_ACTOR}
-  GITHUB_PASSWORD: ${{secrets.ADMIN_TOKEN}}
+  USERNAME: ${GITHUB_ACTOR}
+  PASSWORD: ${{secrets.ADMIN_TOKEN}}
 jobs:
   create_commit:
     runs-on: ubuntu-latest
     steps:
     - name: Create issue using REST API
       run: |
-        curl --request POST --url https://api.github.com/repos/teodik/demo/issues --user "${GITHUB_USERNAME}:${GITHUB_PASSWORD}" --header 'content-type: application/json' --data '{"title": "Automated issue for commit: ${{ github.sha }}", "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n The commit hash was: _${{ github.sha }}_."}' --fail
+        curl --request POST --url https://api.github.com/repos/teodik/demo/issues --user "${USERNAME}:${PASSWORD}" --header 'content-type: application/json' --data '{"title": "Automated issue for commit: ${{ github.sha }}", "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n The commit hash was: _${{ github.sha }}_."}' --fail
   Create_file:
     runs-on: ubuntu-latest
     steps:
@@ -21,19 +21,23 @@ jobs:
       #with:
         #repository: teodik/demo
         #path: demo
-        #token: ${GITHUB_PASSWORD}
+        #token: ${PASSWORD}
       run: |
-        git clone https://${GITHUB_USERNAME}:{GITHUB_PASSWORD}@github.com/teodik/demo.git
+        cd demo/
+        git init
+        git add remote origin "https://$USERNAME:${{secrets.GITHUB_TOKEN}}github.com/$GITHUB_REPOSITORY.git"
+        git config --global user.email "teodik1979@gmail.com"
+        git config --global user.name "teodik"
+        git fetch
+        git checkout --track origin/master
+        git pull
         ls
     - name: create a file and push to repository
       run: |
         echo "${GITHUB_ACTOR}"
-        echo "${GITHUB_USERNAME}"
+        echo "${USERNAME}"
         cd demo/
         pwd
-        git config --global user.email "teodik1979@gmail.com"
-        git config --global user.name "teodik"
-        git config --global user.password "${{secrets.REPO_PASS}}"
         echo $RANDOM >> random.txt
         ls -al
         git add .
