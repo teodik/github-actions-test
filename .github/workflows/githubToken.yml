@@ -14,25 +14,17 @@ jobs:
   Create_file:
     runs-on: ubuntu-latest
     steps:
+    - name:
+      run: mkdir demo
     - name: Clone a repository
-      #uses: actions/checkout@v2.3.4
-      #with:
-        #repository: teodik/demo
-        #path: demo
-        #token: ${PASSWORD}
-      run: |
-        git init
-        git add remote origin "https://$GITHUB_ACTOR:${{secrets.GITHUB_TOKEN}}@github.com/$GITHUB_REPOSITORY.git"
-        git config --global user.email "teodik1979@gmail.com"
-        git config --global user.name "teodik"
-        git fetch
-        git checkout master
-        git branch --set-upstream-to=origin/master
-        git pull
-        ls
+      uses: actions/checkout@v2.3.4
+      with:
+        repository: teodik/demo
+        path: demo
+        token: ${PASSWORD}
     - name: create a file and push to repository
       run: |
-        echo "${GITHUB_ACTOR}"
+        echo "$USERNAME"
         echo "${USERNAME}"
         cd demo/
         pwd
