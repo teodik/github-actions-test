@@ -21,7 +21,6 @@ jobs:
       with:
         repository: teodik/demo
         path: demo
-        token: ${PASSWORD}
     - name: create a file and push to repository
       run: |
         echo "$USERNAME"
