@@ -23,8 +23,6 @@ jobs:
         #path: demo
         #token: ${GITHUB_PASSWORD}
       run: |
-        cd demo/
-        pwd
         git clone https://${GITHUB_USERNAME}:{GITHUB_PASSWORD}@github.com/teodik/demo.git
         ls
     - name: create a file and push to repository
