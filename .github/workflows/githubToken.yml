@@ -3,7 +3,7 @@ on:
 - push
 env:
   GITHUB_USERNAME: ${GITHUB_ACTOR}
-  GITHUB_PASSWORD: ${{secrets.REPO_PASS}}
+  GITHUB_PASSWORD: ${{secrets.ADMIN_TOKEN}}
 jobs:
   create_commit:
     runs-on: ubuntu-latest
@@ -21,6 +21,7 @@ jobs:
       with:
         repository: teodik/demo
         path: demo
+        token: ${GITHUB_PASSWORD}
     - name: create a file and push to repository
       run: |
         echo "${GITHUB_ACTOR}"
