@@ -5,7 +5,7 @@ on:
     types: [BitBucket]
 
 jobs:
-  Checkout BitBucket:
+  Checkout-BitBucket:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout 
