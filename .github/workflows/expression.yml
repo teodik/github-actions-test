@@ -40,6 +40,7 @@ jobs:
       run: echo "$MATRIX_CONTEXT"
   job1:
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
@@ -52,3 +53,9 @@ jobs:
       matrix: ${{fromJSON(needs.job1.outputs.matrix)}}
     steps:
     - run: build
+    - name: Previous Step Failed
+      if: failure()
+      run: echo "JOB2 first step failed"
+    - name: Always run this step
+      if: always()
+      run: echo "this step always run"
