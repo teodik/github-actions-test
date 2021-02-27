@@ -9,6 +9,6 @@ jobs:
     - name: checkout repository
       uses: actions/checkout@v2.3.4
     - name: Decrypt secret.json
-      run: gpg --quite --batch --yes --decrypt --passphrase="${{secrets.PASSPHASE}}" --output $GITHUB_WORKSPACE/secret.json secret.json.gpg
+      run: gpg --quiet --batch --yes --decrypt --passphrase="${{secrets.PASSPHASE}}" --output $GITHUB_WORKSPACE/secret.json secret.json.gpg
     - name: Print json file
       run: cat secret.json
