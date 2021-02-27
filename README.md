@@ -36,3 +36,11 @@ https://docs.github.com/en/actions/reference/environment-variables
 
 Authentication in a workflow using GITHUB_TOKEN \
 https://docs.github.com/en/actions/reference/authentication-in-a-workflow 
+
+GunbPG: \
+https://www.gnupg.org/ \
+to encrypt: gpg --symmetric --cipher-algo AES256 secret.json \
+to decrypt: 
+
+Encrypted Secrets: \
+https://docs.github.com/en/actions/reference/encrypted-secrets
