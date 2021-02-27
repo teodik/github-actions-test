@@ -47,3 +47,6 @@ https://docs.github.com/en/actions/reference/encrypted-secrets
 
 Context and expression syntax for GitHub Actions: \
 https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions
+
+GitHub Available Functions: \
+https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#functions
