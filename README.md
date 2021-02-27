@@ -39,8 +39,11 @@ https://docs.github.com/en/actions/reference/authentication-in-a-workflow
 
 GunbPG: \
 https://www.gnupg.org/ \
-to encrypt: gpg --symmetric --cipher-algo AES256 secret.json \
-to decrypt: 
+to encrypt: gpg --symmetric --cipher-algo AES256 Filename \
+to decrypt: gpg --quiet --batch --yes --decrypt --passphrase="${{secrets.PASSPHRASE}}" --output PATH/TO/dectrypted/finename path/to/encrypted/filename.gpg
 
 Encrypted Secrets: \
 https://docs.github.com/en/actions/reference/encrypted-secrets
+
+Context and expression syntax for GitHub Actions: \
+https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions
