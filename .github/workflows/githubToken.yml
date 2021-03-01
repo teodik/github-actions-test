@@ -24,6 +24,7 @@ jobs:
         token: ${{secrets.ADMIN_TOKEN}}
     - name: create a file and push to repository
       run: |
+        ls
         cd demo
         echo $RANDOM >> random.txt
         ls -al
