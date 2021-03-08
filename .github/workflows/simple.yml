@@ -24,7 +24,7 @@ jobs:
         with:
           script: |
             #printenv "payload"
-            payloadENV = get_state(payload)
+            payloadENV = get_state(env.payload)
             print(payloadENV)
             deployments = payloadENV.split(",")
             print(deployments)
