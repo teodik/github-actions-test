@@ -24,6 +24,7 @@ jobs:
         uses: jannekem/run-python-script-action@v1.2
         with:
           script: |
+            import json
             #printenv "payload"
             payloadENV = "lcom:develop,tcom:release/3.0" #get_state(payload)
             print(payloadENV)
