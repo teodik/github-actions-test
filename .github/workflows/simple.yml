@@ -19,15 +19,15 @@ jobs:
           echo "github.event.client_payload = ${{github.event.client_payload}}"
           echo "\n\n"
           echo "github.event.client_payload.Repositories = ${{github.event.client_payload.Repositories}}"
-          $payload = ${{github.event.client_payload.Repositories}}
+          env.payload = ${{github.event.client_payload.Repositories}}
       - name: map repo with branch
         uses: jannekem/run-python-script-action@v1.2
         with:
           script: |
-            deployments = $payload.split(",")
+            deployments = env.payload.split(",")
             for deploy in deployments:
               repositoryBranch = deploy.split(":")
-              $repoBranchMap[repositoryBranch[0]] = repositoryBranch[1]
+              env.repoBranchMap[repositoryBranch[0]] = repositoryBranch[1]
       - name: Print the map
         run: |
           echo "repoBranchMap"
