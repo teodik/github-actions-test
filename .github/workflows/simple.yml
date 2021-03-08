@@ -3,7 +3,8 @@ name: Shell Commands
 on:
   repository_dispatch:
     types: [build]
-
+env:
+  repoBranch:
 jobs:
   get-github-object:
     runs-on: ubuntu-latest
@@ -19,6 +20,7 @@ jobs:
           echo "github.event.client_payload.Repositories = ${{github.event.client_payload.Repositories}}"
           #echo "::set-env name=payload::${{github.event.client_payload.Repositories}}"
           echo "payload = ${{github.event.client_payload.Repositories}}" >> GITHUB_ENV
+          echo "payload = ${env.payload}"
       - name: map repo with branch
         uses: jannekem/run-python-script-action@v1.2
         with:
