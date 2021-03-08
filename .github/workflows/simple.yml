@@ -23,7 +23,7 @@ jobs:
         uses: jannekem/run-python-script-action@v1.2
         with:
           script: |
-            printenv "payload"
+            #printenv "payload"
             payloadENV = get_state(payload)
             print(payloadENV)
             deployments = payloadENV.split(",")
@@ -34,10 +34,12 @@ jobs:
               repoBranchMap[repositoryBranch[0]] = repositoryBranch[1]
             #echo "repoBranch = repoBranchMap" >> GITHUB_ENV
             print(repoBranchMap)
-            save_state(repoBranch, repoBranchMap)
+            #save_state(repoBranch, repoBranchMap)
+            set_env(repoBranch, repoBranchMap)
       - name: Print the map
         run: |
-          echo "${env.STATE_repoBranch}"
+          #echo "${env.STATE_repoBranch}"
+          echo "${env.repoBranch}"
   run-shell-commands:
     runs-on: ubuntu-latest
     steps:
