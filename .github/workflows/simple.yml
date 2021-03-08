@@ -42,7 +42,7 @@ jobs:
       - name: Print the map
         run: |
           #echo "${env.STATE_repoBranch}"
-          RepositoriesBranches = fromJSON(env.repoBranch)
+          RepositoriesBranches = ${{fromJSON(env.repoBranch)}}
           echo "${RepositoriesBranches}"
   run-shell-commands:
     runs-on: ubuntu-latest
