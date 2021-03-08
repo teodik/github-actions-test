@@ -17,6 +17,33 @@ jobs:
           echo "github.event.client_payload = ${{github.event.client_payload}}"
           echo "\n\n"
           echo "github.event.client_payload.Repositories = ${{github.event.client_payload.Repositories}}"
+          #echo "::set-env name=payload::${{github.event.client_payload.Repositories}}"
+          echo "payload = ${{github.event.client_payload.Repositories}}" >> GITHUB_ENV
+          #echo "payload: ${env.payload}"
+      - name: map repo with branch
+        uses: jannekem/run-python-script-action@v1.2
+        with:
+          script: |
+            import json
+            #printenv "payload"
+            payloadENV = "lcom:develop,tcom:release/3.0" #get_state(payload)
+            print(payloadENV)
+            deployments = payloadENV.split(",")
+            print(deployments)
+            repoBranchMap = {}
+            for deploy in deployments:
+              repositoryBranch = deploy.split(":")
+              repoBranchMap[repositoryBranch[0]] = repositoryBranch[1]
+            #echo "repoBranch = repoBranchMap" >> GITHUB_ENV
+            print(repoBranchMap)
+            result = json.dumps(repoBranchMap) 
+            #save_state(repoBranch, repoBranchMap)
+            set_env("repoBranch", result)
+      - name: Print the map
+        run: |
+          #echo "${env.STATE_repoBranch}"
+          #RepositoriesBranches: ${{fromJSON(env.repoBranch)}}
+          echo "${env.repoBranch}"
   run-shell-commands:
     runs-on: ubuntu-latest
     steps:

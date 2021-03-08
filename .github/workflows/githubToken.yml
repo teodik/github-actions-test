@@ -14,10 +14,18 @@ jobs:
   Create_file:
     runs-on: ubuntu-latest
     steps:
+    #- name: create a folder
+      #run: mkdir demo
     - name: Clone a repository
       uses: actions/checkout@v2.3.4
+      with:
+        repository: teodik/demo
+        path: demo
+        token: ${{secrets.ADMIN_TOKEN}}
     - name: create a file and push to repository
       run: |
+        ls
+        cd demo
         echo $RANDOM >> random.txt
         ls -al
         git config --global user.email "teodik1979@gmail.com"

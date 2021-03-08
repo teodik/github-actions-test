@@ -1,0 +1,16 @@
+name: Checkout BitBucket
+
+on:
+  repository_dispatch:
+    types: [BitBucket]
+
+jobs:
+  Checkout-BitBucket:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout 
+      run: |
+        pwd
+        ls
+        git clone "https://teodik:${{secrets.BITBUCKET_PASSWORD}}@bitbucket.org/teodik1979/testing.git"
+        git remote -v
