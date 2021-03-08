@@ -26,11 +26,13 @@ jobs:
             payloadENV = os.getenv('payload')
             print(payloadENV)
             deployments = payloadENV.split(",")
+            print(deployments)
             repoBranchMap = {}
             for deploy in deployments:
               repositoryBranch = deploy.split(":")
               repoBranchMap[repositoryBranch[0]] = repositoryBranch[1]
-            echo "repoBranch = repoBranchMap" >> GITHUB_ENV
+            #echo "repoBranch = repoBranchMap" >> GITHUB_ENV
+            print(repoBranchMap)
       - name: Print the map
         run: |
           echo "${env.repoBranch}"
