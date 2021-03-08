@@ -25,7 +25,7 @@ jobs:
         uses: jannekem/run-python-script-action@v1.2
         with:
           script: |
-            deployments = env.payload.split(",")
+            deployments = ${{env.payload}}.split(",")
             for deploy in deployments:
               repositoryBranch = deploy.split(":")
               env.repoBranchMap[repositoryBranch[0]] = repositoryBranch[1]
