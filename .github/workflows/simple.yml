@@ -23,7 +23,7 @@ jobs:
       - name: map repo with branch
         uses: jannekem/run-python-script-action@v1.2
         with:
-          script:
+          script: |
             deployments = payload.split(",")
             for deploy in deployments:
               repositoryBranch = deploy.split(":")
