@@ -5,6 +5,7 @@ on:
     types: [build]
 
 env:
+  payload:
   repoBranchMap:
 
 jobs:
@@ -20,13 +21,14 @@ jobs:
           echo "github.event.client_payload = ${{github.event.client_payload}}"
           echo "\n\n"
           echo "github.event.client_payload.Repositories = ${{github.event.client_payload.Repositories}}"
-          echo "payload = ${{github.event.client_payload.Repositories}}" >> $GITHUB_ENV
+          env.payload = ${{github.event.client_payload.Repositories}}
       - name: map repo with branch
         uses: jannekem/run-python-script-action@v1.2
         with:
           script: |
-            print("env.payload")
-            deployments = env.payload.split(",")
+            payloadENV = os.getenv('payload')
+            print(payloadENV)
+            deployments = payloadENV.split(",")
             for deploy in deployments:
               repositoryBranch = deploy.split(":")
               env.repoBranchMap[repositoryBranch[0]] = repositoryBranch[1]
