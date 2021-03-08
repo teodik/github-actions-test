@@ -26,7 +26,7 @@ jobs:
         with:
           script: |
             print("env.payload")
-            deployments = $env.payload.split(",")
+            deployments = env.payload.split(",")
             for deploy in deployments:
               repositoryBranch = deploy.split(":")
               env.repoBranchMap[repositoryBranch[0]] = repositoryBranch[1]
