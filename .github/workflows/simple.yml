@@ -18,7 +18,7 @@ jobs:
           echo "\n\n"
           echo "github.event.client_payload.Repositories = ${{github.event.client_payload.Repositories}}"
           #echo "::set-env name=payload::${{github.event.client_payload.Repositories}}"
-          echo "payload = ${{github.event.client_payload.Repositories}}" >> GITHUB_ENV"
+          echo "payload = ${{github.event.client_payload.Repositories}}" >> GITHUB_ENV
       - name: map repo with branch
         uses: jannekem/run-python-script-action@v1.2
         with:
