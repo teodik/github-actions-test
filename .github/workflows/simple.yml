@@ -3,8 +3,7 @@ name: Shell Commands
 on:
   repository_dispatch:
     types: [build]
-env:
-  repoBranch:
+
 jobs:
   get-github-object:
     runs-on: ubuntu-latest
@@ -37,7 +36,7 @@ jobs:
             #echo "repoBranch = repoBranchMap" >> GITHUB_ENV
             print(repoBranchMap)
             #save_state(repoBranch, repoBranchMap)
-            set_env(repoBranch, repoBranchMap)
+            set_env("repoBranch", repoBranchMap)
       - name: Print the map
         run: |
           #echo "${env.STATE_repoBranch}"
