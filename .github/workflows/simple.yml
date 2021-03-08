@@ -4,10 +4,6 @@ on:
   repository_dispatch:
     types: [build]
 
-env:
-  payload:
-  repoBranchMap:
-
 jobs:
   get-github-object:
     runs-on: ubuntu-latest
@@ -21,7 +17,8 @@ jobs:
           echo "github.event.client_payload = ${{github.event.client_payload}}"
           echo "\n\n"
           echo "github.event.client_payload.Repositories = ${{github.event.client_payload.Repositories}}"
-          env.payload = ${{github.event.client_payload.Repositories}}
+          echo "::set-env name=payload::${{github.event.client_payload.Repositories}}"
+          #echo "payload = ${{github.event.client_payload.Repositories}}" >> GITHUB_ENV"
       - name: map repo with branch
         uses: jannekem/run-python-script-action@v1.2
         with:
@@ -29,12 +26,14 @@ jobs:
             payloadENV = os.getenv('payload')
             print(payloadENV)
             deployments = payloadENV.split(",")
+            repoBranchMap = {}
             for deploy in deployments:
               repositoryBranch = deploy.split(":")
-              env.repoBranchMap[repositoryBranch[0]] = repositoryBranch[1]
+              repoBranchMap[repositoryBranch[0]] = repositoryBranch[1]
+            echo "::set-env name=repoBranch::repoBranchMap"
       - name: Print the map
         run: |
-          echo "env.repoBranchMap"
+          echo "${env.repoBranch}"
   run-shell-commands:
     runs-on: ubuntu-latest
     steps:
