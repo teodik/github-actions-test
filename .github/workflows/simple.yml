@@ -35,12 +35,14 @@ jobs:
               repoBranchMap[repositoryBranch[0]] = repositoryBranch[1]
             #echo "repoBranch = repoBranchMap" >> GITHUB_ENV
             print(repoBranchMap)
+            result = json.dumps(repoBranchMap) 
             #save_state(repoBranch, repoBranchMap)
-            set_env("repoBranch", repoBranchMap)
+            set_env("repoBranch", result)
       - name: Print the map
         run: |
           #echo "${env.STATE_repoBranch}"
-          echo "${env.repoBranch}"
+          RepositoriesBranches = fromJSON(env.repoBranch)
+          echo "${RepositoriesBranches}"
   run-shell-commands:
     runs-on: ubuntu-latest
     steps:
