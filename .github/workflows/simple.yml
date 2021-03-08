@@ -20,11 +20,12 @@ jobs:
           #echo "::set-env name=payload::${{github.event.client_payload.Repositories}}"
           echo "payload = ${{github.event.client_payload.Repositories}}" >> GITHUB_ENV
       - name: map repo with branch
+        uses: actions/setup-python@v2
         uses: jannekem/run-python-script-action@v1.2
         with:
           script: |
             #printenv "payload"
-            payloadENV = get_state(env.payload)
+            payloadENV = get_state(payload)
             print(payloadENV)
             deployments = payloadENV.split(",")
             print(deployments)
