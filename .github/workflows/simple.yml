@@ -43,7 +43,7 @@ jobs:
         run: |
           #echo "${env.STATE_repoBranch}"
           #RepositoriesBranches: ${{fromJSON(env.repoBranch)}}
-          echo "${env.repoBranch}"
+          echo $repoBranch
   run-shell-commands:
     runs-on: ubuntu-latest
     steps:
