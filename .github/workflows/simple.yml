@@ -26,7 +26,7 @@ jobs:
           script: |
             import json
             #printenv "payload"
-            payloadENV = $payload #"lcom:develop,tcom:release/3.0" #get_state(payload)
+            payloadENV = "lcom:develop,tcom:release/3.0" #get_state(payload)
             print(payloadENV)
             deployments = payloadENV.split(",")
             print(deployments)
@@ -44,7 +44,7 @@ jobs:
           #echo "${env.STATE_repoBranch}"
           #RepositoriesBranches: ${{fromJSON(env.repoBranch)}}
           echo $repoBranch
-          for i in "${!repoBranch[@]}"
+          for i in ${!repoBranch[@]}
           do
             echo "Key: ${i}"
             echo "Value: ${repoBranch[$i]}"
