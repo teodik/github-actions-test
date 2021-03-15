@@ -26,7 +26,7 @@ jobs:
           script: |
             import json
             #printenv "payload"
-            payloadENV = "${{github.event}}" #"lcom:develop,tcom:release/3.0" #get_state(payload) ${{env.payload}}
+            payloadENV =  json.dumps(${{github.event}}) #"${{github.event}}" #"lcom:develop,tcom:release/3.0" #get_state(payload) ${{env.payload}}
             print(payloadENV)
             deployments = payloadENV.split(",")
             print(deployments)
